@@ -108,18 +108,19 @@ public class Camera extends GameObject {
 			double xDist = a.getCenterLocation().getX()-this.getHitbox().getCenterLocation().getX();
 			double yDist = a.getCenterLocation().getY()-(this.getHitbox().getCenterLocation().getY()+(this.getHeight()/6));
 			double newX, newY;
-			if(Math.abs(xDist) <= 5) {
-				newX = a.getCenterLocation().getX() - (int)((double)this.getHitbox().getBounds().getWidth()/2.0);
-			} else {
-				xDist/=(followSpeed*Game.TPS);
-				newX = box.getLocation().getX()+xDist;
+			if(Math.abs(xDist) < 1) {
+			//	newX = a.getCenterLocation().getX() - (int)((double)this.getHitbox().getBounds().getWidth()/2.0);
+				xDist = 0;
 			}
-			if(Math.abs(yDist) <= 5) {
-				newY = a.getCenterLocation().getY() - (int)((double)this.getHeight()*2/3.0);
-			} else {
-				yDist/=(followSpeed*Game.TPS);
-				newY = box.getLocation().getY()+yDist;
+			xDist/=(followSpeed*Game.TPS);
+			newX = box.getLocation().getX()+xDist;
+			if(Math.abs(yDist) < 1) {
+				yDist=0;
+				//newY = a.getCenterLocation().getY() - (int)((double)this.getHeight()*2/3.0);
 			}
+			yDist/=(followSpeed*Game.TPS);
+			newY = box.getLocation().getY()+yDist;
+			
 			box.setX(newX);
 			box.setY(newY);
 		}

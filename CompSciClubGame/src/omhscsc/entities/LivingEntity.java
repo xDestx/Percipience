@@ -216,10 +216,10 @@ public abstract class LivingEntity extends Entity {
 	
 	public void drawHealthBar(Graphics g, int x, int y, float scale) {
 		
-		g.setColor(Color.black);
+		g.setColor(Color.white);
 		g.drawRect(x, y-(int)(15 * scale), (int)(100*scale), (int)(10*scale));
-		g.setColor(Color.ORANGE);
-		g.fillRect(x+(int)(1*scale), y-(int)(14*scale), (int)((100 * (this.getCurrentHp() / this.getMaxHp())) * scale), (int)(9 * scale));
+		g.setColor(Color.green);
+		g.fillRect(x+(int)(1*scale)-1, y-(int)(14*scale)-1, (int)((100 * (this.getCurrentHp() / this.getMaxHp())) * scale), (int)(10 * scale));
 		
 	}
 	
