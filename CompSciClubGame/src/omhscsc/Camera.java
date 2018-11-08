@@ -17,6 +17,8 @@ public class Camera extends GameObject {
 	private Hitbox box;
 	//What the camera is hooked too
 	private Anchor a;
+	private boolean smoothFollow;
+	private float followSpeed;
 	
 	/**
 	 * Create a new Camera with a Location and size.
@@ -27,6 +29,8 @@ public class Camera extends GameObject {
 	public Camera(Location l, int w, int h)
 	{
 		box = new Hitbox(w,h,l);
+		smoothFollow = true;
+		followSpeed = 0.2f;
 	}
 	
 	/**
@@ -96,8 +100,29 @@ public class Camera extends GameObject {
 		/*
 		 * Set's the anchor to the center of the camera.
 		 */
-		box.setX(a.getCenterLocation().getX() - (int)((double)this.getHitbox().getBounds().getWidth()/2.0));
-		box.setY(a.getCenterLocation().getY() - (int)((double)this.getHitbox().getBounds().getHeight()*2/3.0));
+		if(!smoothFollow) {
+			box.setX(a.getCenterLocation().getX() - (int)((double)this.getHitbox().getBounds().getWidth()/2.0));
+			box.setY(a.getCenterLocation().getY() - (int)((double)this.getHitbox().getBounds().getHeight()*2/3.0));
+		} else {
+			//camera should reach in 1/2 second
+			double xDist = a.getCenterLocation().getX()-this.getHitbox().getCenterLocation().getX();
+			double yDist = a.getCenterLocation().getY()-(this.getHitbox().getCenterLocation().getY()+(this.getHeight()/6));
+			double newX, newY;
+			if(Math.abs(xDist) <= 5) {
+				newX = a.getCenterLocation().getX() - (int)((double)this.getHitbox().getBounds().getWidth()/2.0);
+			} else {
+				xDist/=(followSpeed*Game.TPS);
+				newX = box.getLocation().getX()+xDist;
+			}
+			if(Math.abs(yDist) <= 5) {
+				newY = a.getCenterLocation().getY() - (int)((double)this.getHeight()*2/3.0);
+			} else {
+				yDist/=(followSpeed*Game.TPS);
+				newY = box.getLocation().getY()+yDist;
+			}
+			box.setX(newX);
+			box.setY(newY);
+		}
 	}
 
 	/**

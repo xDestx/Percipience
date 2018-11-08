@@ -155,9 +155,9 @@ public class World extends GameObject implements Serializable {
 	public void renderBackground(Graphics g, Hitbox hitbox, float scale) {
 		// Based on where the player is, the background should be drawn using
 		// the scroll rates (somehow)
+		if (backgroundLayers == null)
+			return;
 		for (int i = 0; i < backgroundLayers.length; i++) {
-			if (backgroundLayers == null)
-				return;
 			BufferedImage bi = backgroundLayers[i];
 			if (bi == null)
 				continue;
@@ -167,7 +167,14 @@ public class World extends GameObject implements Serializable {
 			int imgY = (int) (hitbox.getBounds().getCenterY() * scrollRate - ((Game.getHeight() / scale) / 2)) + (int) (bi.getHeight() / 2) - (int) (hitbox.getHeight() / 2 * scale);
 			int imgX2 = (int) (imgX + (Game.getWidth() /scale)) + (int) (bi.getWidth() / 2) + (int) (hitbox.getWidth() / 2 * scale);
 			int imgY2 = (int) (imgY + (Game.getHeight() /scale)) + (int) (bi.getHeight() / 2) + (int) (hitbox.getHeight() / 2 * scale);
+			int halfX = (imgX2-imgX)/4;
+			int halfY = (imgY2-imgY)/4;
+			imgX+=halfX;
+			imgY+=halfY;
+			imgX2-=halfX;
+			imgY2-=halfY;
 			g.drawImage(bi, 0, 0, Game.getWidth(), Game.getHeight(), imgX, imgY, imgX2, imgY2, null);
+			
 			// bi = image drawn
 			// first two parameters are where to start drawing the rectangle in
 			// the GAME WINDOW
@@ -271,7 +278,7 @@ public class World extends GameObject implements Serializable {
 			return;
 		worlds = new ArrayList<World>();
 		World startingWorld = new World(0, 2, new float[] {0.2f,0.3f}, new Location[] {new Location(0,-110)}, "starting_world");
-		startingWorld.addGameObject(new Box(-1000,10,2000,800, "dark_grass"));
+		startingWorld.addGameObject(new Box(-1000,10,2000,100, "dark_grass"));
 		
 		
 		worlds.add(startingWorld);

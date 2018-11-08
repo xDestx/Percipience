@@ -172,14 +172,15 @@ public class MainMenuState extends GameState {
 			int ydiv = bc.getH();
 			int textX = bc.getTextX();
 			int textY = bc.getTextY();
-			int expandX = 10;
-			int expandY = 20;
-			if(selected != i)
-				g.drawImage(button, xoff, yoff, xdiv, ydiv, null);
-			else
-				g.drawImage(button, xoff, yoff-(expandY/2), xdiv+expandX, ydiv+expandY, null);
+			//int expandX = 10;
+			//int expandY = 20;
+			g.drawImage(button, xoff, yoff, xdiv, ydiv, null);
+//			
 
-			g.setColor(Color.gray);
+			if(selected != i)
+				g.setColor(Color.gray);
+			else
+				g.setColor(Color.WHITE);
 			TextLayout tl = new TextLayout(buttons[i].getTitle(), new Font("Monaco", Font.PLAIN, (int)(64 * (ydiv/283.0))), ((Graphics2D)g).getFontRenderContext());
 			tl.draw(((Graphics2D)g), textX, textY);
 		}

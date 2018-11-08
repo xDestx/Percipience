@@ -204,14 +204,12 @@ public class Game {
 				ticks=0;
 				frames=0;
 				nsPassed=0;
-				if(!c.hasFocus()) {
-					System.out.println("Focus missing");
-				}
 			}
 			lastTime = currentTime;
 			if(lastKnownState != this.currentState) {
 				lastKnownState = this.currentState;
 				timePassed = 0;
+				renderPass=0;
 				//Resetting to remove lag
 			}
 				
