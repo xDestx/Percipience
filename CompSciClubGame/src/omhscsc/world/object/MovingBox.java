@@ -1,7 +1,6 @@
 package omhscsc.world.object;
 
 import java.awt.Color;
-import java.awt.Graphics;
 
 import omhscsc.Game;
 import omhscsc.state.GameStateState;
@@ -10,6 +9,10 @@ import omhscsc.util.Velocity;
 import omhscsc.world.WorldObject;
 
 public class MovingBox extends WorldObject { //Moving block
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3426512611250347836L;
 	protected Velocity v; //velocities in x and y direction
 	
 	public MovingBox(int x, int y, int w, int h, Color c, double vx, double vy) {

@@ -2,13 +2,9 @@ package omhscsc.entities;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import omhscsc.Game;
-import omhscsc.GameObject;
-import omhscsc.graphic.Renderable;
 import omhscsc.items.Upgrade;
 import omhscsc.items.Useable;
 import omhscsc.state.GameStateState;
@@ -17,21 +13,20 @@ import omhscsc.util.Hitbox;
 import omhscsc.util.ImageLoader;
 import omhscsc.util.Location;
 import omhscsc.util.Velocity;
-import omhscsc.world.WorldObject;
 
 public class Player extends LivingEntity implements Anchor {
 
-	private String name;
+//	private String name;
 	private boolean rightHeld, leftHeld, drawDebug;
 	private int healthUpgrades, speedUpgrades, jumpUpgrades;
-	private Useable use;
+//	private Useable use;
 	private ArrayList<Integer> storyLocations; //Where in the story the player is and has been, each StoryElement has a serial that is added to the arraylist
 
 	public Player(String n, Hitbox h) {
 		super(h);
 		h.setHeight(100);
 		h.setWidth(50);
-		name = n;
+//		name = n;
 		drawDebug = false;
 		healthUpgrades = 0;
 		speedUpgrades = 0;
@@ -44,7 +39,7 @@ public class Player extends LivingEntity implements Anchor {
 		rightHeld = false;
 		leftHeld = false;
 		velocity = new Velocity(0,0);
-		use = null;
+//		use = null;
 	}
 	
 	public void setRightHeld(boolean r)
@@ -136,7 +131,7 @@ public class Player extends LivingEntity implements Anchor {
 	}
 
 	public void getUseable(Useable u) {
-		use = u;
+//		use = u;
 	}
 
 	public boolean drawHitboxEnabled() {
@@ -155,6 +150,7 @@ public class Player extends LivingEntity implements Anchor {
 		
 		if(this.drawDebug)
 			drawHitBoxes(g,xoff,yoff, scale);
+		g.setColor(last);
 	}
 
 

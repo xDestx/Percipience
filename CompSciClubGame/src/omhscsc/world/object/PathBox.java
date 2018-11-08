@@ -13,6 +13,10 @@ import omhscsc.world.WorldObject;
 
 public class PathBox extends WorldObject {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8893948195917753864L;
 	protected List<Location>path;
 	private Velocity currentVelocity;
 	protected int current,next,last;

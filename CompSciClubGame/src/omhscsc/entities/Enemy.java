@@ -1,19 +1,6 @@
 package omhscsc.entities;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
-import omhscsc.GameObject;
-import omhscsc.graphic.Renderable;
-import omhscsc.items.Upgrade;
-import omhscsc.items.Useable;
-import omhscsc.state.GameStateState;
 import omhscsc.util.Hitbox;
-import omhscsc.util.ImageLoader;
 
 public abstract class Enemy extends LivingEntity {
 	

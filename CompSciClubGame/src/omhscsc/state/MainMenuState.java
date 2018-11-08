@@ -11,8 +11,6 @@ import java.awt.font.TextLayout;
 import java.awt.image.BufferedImage;
 
 import omhscsc.Game;
-import omhscsc.graphic.animation.Animation;
-import omhscsc.graphic.animation.LightAnimation;
 import omhscsc.sound.Sound;
 import omhscsc.sound.SoundMaster;
 import omhscsc.ui.UIButton;
@@ -24,7 +22,7 @@ public class MainMenuState extends GameState {
 	private ButtonConfig[] buttonLocs;
 	private BufferedImage bg,button,button_invert;
 	private int selected;
-	private Animation lightAnimation;
+//	private Animation lightAnimation;
 	
 	class ButtonConfig {
 		
@@ -81,7 +79,7 @@ public class MainMenuState extends GameState {
 		bg = ImageLoader.loadImage("gamebg");
 		button = ImageLoader.loadImage("button");
 		button_invert = ImageLoader.loadImage("button_invert");
-		lightAnimation = new LightAnimation(10);
+		//lightAnimation = new LightAnimation(10);
 	}
 	
 	public void calculateButtonLocations(Graphics g)
@@ -164,7 +162,7 @@ public class MainMenuState extends GameState {
 		Color last = g.getColor();
 		//Draw bg
 		g.drawImage(bg, 0, 0, Game.getWidth(), Game.getHeight(), null);
-		lightAnimation.renderAndIncrement(g, xo, yo, scale);
+//		lightAnimation.renderAndIncrement(g, xo, yo, scale);
 		for(int i = 0; i<buttons.length;i++)
 		{
 			ButtonConfig bc = buttonLocs[i];
@@ -205,7 +203,7 @@ public class MainMenuState extends GameState {
 	public void tick() {
 		if(!SoundMaster.isSoundPlaying(Sound.TITLE))
 			SoundMaster.playSound(Sound.TITLE);
-		lightAnimation.tick();
+//		lightAnimation.tick();
 	}
 
 	@Override

@@ -5,11 +5,8 @@ import java.awt.Graphics;
 import java.util.HashSet;
 import java.util.Set;
 
-import omhscsc.Game;
 import omhscsc.entities.Entity;
-import omhscsc.entities.LivingEntity;
 import omhscsc.state.GameStateState;
-import omhscsc.util.Debug;
 import omhscsc.world.WorldObject;
 
 /**

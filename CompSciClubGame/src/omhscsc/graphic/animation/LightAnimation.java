@@ -2,18 +2,17 @@ package omhscsc.graphic.animation;
 
 import java.awt.Graphics;
 
-import omhscsc.RenderableGameObject;
 import omhscsc.util.Hitbox;
 
 public class LightAnimation extends DrawnAnimation {
 
-	private LightCircle[] circles;
+//	private LightCircle[] circles;
 	
 	public LightAnimation(int amount) {
 		super("Light_Animation", -1);
-		circles = new LightCircle[amount];
+		//circles = new LightCircle[amount];
 		for (int i = 0; i < amount; i++) {
-			circles[i] = new LightCircle();
+//			circles[i] = new LightCircle();
 		}
 	}
 

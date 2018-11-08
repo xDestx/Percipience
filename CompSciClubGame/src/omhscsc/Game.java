@@ -168,7 +168,8 @@ public class Game {
 		//This is to remove the lag between states. (Ex, main menu takes a while, and if you jump right in game it tries to speed the game up)
 		int lastKnownState = this.currentState;
 		final int nsPerTick = (int)1e9/Game.TPS;
-		double timePassed = 0;
+		final int nsPerFrame = (int)1e9/Game.FPS;
+		double timePassed = 0, renderPass = 0;
 		double currentTime = System.nanoTime();
 		double lastTime = System.nanoTime();
 		
@@ -180,6 +181,7 @@ public class Game {
 			currentTime = System.nanoTime();
 			nsPassed += currentTime - lastTime;
 			timePassed += (currentTime - lastTime)/nsPerTick;
+			renderPass += (currentTime-lastTime)/nsPerFrame;
 			
 			if(timePassed>=1)
 			{
@@ -188,17 +190,23 @@ public class Game {
 				timePassed-=1;
 				ticks++;
 			}
-			render();
-			frames++;
+			if(renderPass >= 1) {
+				render();
+				frames++;
+				renderPass-=1;
+			}
 			
 			if(nsPassed > 1e9)
 			{
-				//System.out.println("Ticks: " + ticks + " Frames: " + frames);
+				System.out.println("Ticks: " + ticks + " Frames: " + frames);
 				currentFPS = frames;
 				currentTPS = ticks;
 				ticks=0;
 				frames=0;
 				nsPassed=0;
+				if(!c.hasFocus()) {
+					System.out.println("Focus missing");
+				}
 			}
 			lastTime = currentTime;
 			if(lastKnownState != this.currentState) {
@@ -232,6 +240,7 @@ public class Game {
 			
 		g.dispose();
 		bs.show();
+		c.requestFocusInWindow();
 	}
 	
 	/**
@@ -409,6 +418,7 @@ public class Game {
 	
 	//TICKS PER SECOND
 	public static final int TPS = 60;
+	public static final int FPS = 60;
 	
 	/**
 	 * Get the rate at which things should be moving. 1.0f is the default value.

@@ -1,6 +1,5 @@
 package omhscsc.world;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
@@ -19,8 +18,6 @@ import omhscsc.util.Hitbox;
 import omhscsc.util.ImageLoader;
 import omhscsc.util.Location;
 import omhscsc.world.object.Box;
-import omhscsc.world.object.PathBox;
-import omhscsc.world.region.EmptyRegion;
 import omhscsc.world.region.WorldRegion;
 
 public class World extends GameObject implements Serializable {

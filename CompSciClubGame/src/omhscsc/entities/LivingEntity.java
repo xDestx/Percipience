@@ -8,12 +8,10 @@ import java.awt.Rectangle;
 import omhscsc.Game;
 import omhscsc.GameObject;
 import omhscsc.RenderableGameObject;
-import omhscsc.graphic.Renderable;
 import omhscsc.state.GameStateState;
 import omhscsc.util.Hitbox;
 import omhscsc.util.Location;
 import omhscsc.util.Velocity;
-import omhscsc.world.World;
 import omhscsc.world.WorldObject;
 
 public abstract class LivingEntity extends Entity {
@@ -181,13 +179,13 @@ public abstract class LivingEntity extends Entity {
 		//double currentX = 0;
 		//double currentY = 0;
 		//System.out.print("USING PRECISE ");
-		int t = 0;
+//		int t = 0;
 		do {
 			double xChange = xv/500.0;
 			double yChange = yv/500.0;
 			velocity.addY(yChange);
 			hitbox.addX(xChange);
-			t++;
+//			t++;
 			//currentX+=xChange;
 			//currentY+=yChange;
 		} while (!isColliding(wo));

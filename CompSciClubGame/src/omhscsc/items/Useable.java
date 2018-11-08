@@ -1,6 +1,5 @@
 package omhscsc.items;
 
-import omhscsc.Game;
 import omhscsc.GameObject;
 import omhscsc.state.GameStateState;
 

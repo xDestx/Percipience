@@ -25,12 +25,20 @@ public class LightCircle extends AnimationComponent {
 	public void render(Graphics g, int xoff, int yoff, float scale) {
 		g.drawImage(image, xoff, yoff, null);
 	}
+	
+	public Velocity getVelocity() {
+		return this.v;
+	}
 
 	@Override
 	public void tick() {
 		
 	}
 
+	public Hitbox getViewbounds() {
+		return this.viewBounds;
+	}
+	
 	@Override
 	public Hitbox getHitbox() {
 		return self;

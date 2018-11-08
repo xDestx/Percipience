@@ -1,21 +1,16 @@
 package omhscsc.state;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
-
-import javax.swing.JOptionPane;
 
 import omhscsc.Camera;
 import omhscsc.Game;
-import omhscsc.GameObject;
 import omhscsc.RenderableGameObject;
 import omhscsc.entities.Player;
 import omhscsc.graphic.Renderable;
@@ -24,8 +19,6 @@ import omhscsc.util.Hitbox;
 import omhscsc.util.Location;
 import omhscsc.util.Task;
 import omhscsc.world.World;
-import omhscsc.world.WorldObject;
-import omhscsc.world.object.Box;
 
 public class GameStateState extends GameState {
 
@@ -34,6 +27,7 @@ public class GameStateState extends GameState {
 	private Camera camera;
 	private static World currentWorld;
 	private Player player;
+	private boolean key_a = false, key_d = false, key_w = false;
 	
 	public GameStateState(Game g)
 	{
@@ -42,7 +36,7 @@ public class GameStateState extends GameState {
 		re = new HashSet<Renderable>();
 		currentWorld = World.getWorld(0);
 		camera = new Camera(new Location(0,0), Game.getWidth(), Game.getHeight());
-		camera.setScale(2f);
+		camera.setScale(1.3f);
 		player = new Player("Freddy",new Hitbox(70, 70,new Location(-200,-100)));
 		camera.setAnchor((Anchor)player);
 		placePlayerInWorld(currentWorld);
@@ -101,6 +95,7 @@ public class GameStateState extends GameState {
 		go.remove(g);
 	}
 	
+	private final Font keyFont = new Font("Arial", 0, 96);
 	
 	@Override
 	public void render(Graphics g) {
@@ -133,6 +128,38 @@ public class GameStateState extends GameState {
 				g.drawRect(xoff, yoff, (int)(camera.getWidth() * scale),(int)(camera.getHeight() * scale));
 			//The camera^
 			//System.out.println(camera.getHeight() + "   "+ camera.getScale());
+			Color l = g.getColor();
+			Font lF = g.getFont();
+			g.setFont(keyFont);
+			if(key_a) {
+				g.setColor(Color.green);
+				g.drawRect(10, 120, 100, 100);
+				g.drawString("a", 20, 200);
+			} else {
+				g.setColor(Color.red);
+				g.drawRect(10, 120, 100, 100);
+				g.drawString("a", 20, 200);
+			}
+			if(key_d) {
+				g.setColor(Color.green);
+				g.drawRect(230, 120, 100, 100);
+				g.drawString("d", 240, 200);
+			} else {
+				g.setColor(Color.red);
+				g.drawRect(230, 120, 100, 100);
+				g.drawString("d", 240, 200);
+			}
+			if(key_w) {
+				g.setColor(Color.green);
+				g.drawRect(120, 10, 100, 100);
+				g.drawString("w", 130, 80);
+			} else {
+				g.setColor(Color.red);
+				g.drawRect(120, 10, 100, 100);
+				g.drawString("w", 130, 80);
+			}
+			g.setColor(l);
+			g.setFont(lF);
 		} catch (ConcurrentModificationException e)
 		{
 			e.printStackTrace();
@@ -201,15 +228,17 @@ public class GameStateState extends GameState {
 		if (e.getKeyCode() == KeyEvent.VK_A)
 		{
 			player.setLeftHeld(true);
+			key_a=true;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_D)
 		{
 			player.setRightHeld(true);
+			key_d = true;
 		}
 		if(e.getKeyCode() == KeyEvent.VK_W)
 		{
 			player.jump();
-
+			key_w=true;
 		}
 		if(e.getKeyCode() == KeyEvent.VK_F) {
 			camera.setScale(1.0f);
@@ -237,10 +266,15 @@ public class GameStateState extends GameState {
 		if (e.getKeyCode() == KeyEvent.VK_A)
 		{
 			player.setLeftHeld(false);
+			key_a=false;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_D)
 		{
 			player.setRightHeld(false);
+			key_d = false;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_W) {
+			key_w = false;
 		}
 	}
 

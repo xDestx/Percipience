@@ -1,12 +1,17 @@
 package omhscsc.world.object;
 
 import java.awt.Color;
-import java.awt.Graphics;
 
 import omhscsc.state.GameStateState;
 import omhscsc.world.WorldObject;
 
 public class Box extends WorldObject {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1224701694491800401L;
+
 
 	/**
 	 * Create a box with the specified hitbox and color

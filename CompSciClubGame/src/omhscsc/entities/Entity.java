@@ -1,19 +1,11 @@
 package omhscsc.entities;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-
-import omhscsc.GameObject;
 import omhscsc.RenderableGameObject;
-import omhscsc.graphic.Renderable;
 import omhscsc.state.GameStateState;
 import omhscsc.util.Hitbox;
 import omhscsc.util.Location;
-import omhscsc.world.World;
 
 public abstract class Entity extends RenderableGameObject {
 	
